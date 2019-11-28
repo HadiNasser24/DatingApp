@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Datinapp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
     //http://localhost:5000/api/Values
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -21,6 +23,8 @@ namespace DatingApp.API.Controllers
         }
         // GET api/values
         [HttpGet]
+        // this will not open since it need autherization
+        // if we give it a valid token it will work normally
         public async Task<IActionResult> GetValues()
         {
             var values = await _context.Values.ToListAsync();
@@ -28,6 +32,7 @@ namespace DatingApp.API.Controllers
         }
 
         // GET api/values/5
+        [AllowAnonymous] //this will open normally
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {

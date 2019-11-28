@@ -5,3 +5,5 @@ bin
 obj
 #anything ends with .db (database)
 *.db
+
+appsettings.json

@@ -1,4 +1,4 @@
-namespace Datinapp.API.Controllers.Models
+namespace Datinapp.API.Models
 {
     public class Value
     {
