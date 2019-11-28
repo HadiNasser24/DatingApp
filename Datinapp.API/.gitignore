@@ -1,0 +1,7 @@
+
+#folders we want git to ignore
+.vscode
+bin
+obj
+#anything ends with .db (database)
+*.db
