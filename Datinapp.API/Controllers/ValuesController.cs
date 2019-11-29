@@ -23,7 +23,8 @@ namespace DatingApp.API.Controllers
         }
         // GET api/values
         [HttpGet]
-        // this will not open since it need autherization
+         [AllowAnonymous]
+        // if there is no [AllowAnonymous] this will not open since it need authorization
         // if we give it a valid token it will work normally
         public async Task<IActionResult> GetValues()
         {
