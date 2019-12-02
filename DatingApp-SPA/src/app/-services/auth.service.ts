@@ -11,7 +11,7 @@ constructor(private http: HttpClient) { }
 login(model: any) {
 return this.http.post(this.baseurl + 'login', model)
                 .pipe(
-                  map( (response: any) => {  // this will return a token
+                  map( (response: any) => {  // this will return a token {"token": "ctcdthvcghfhth......."}
                     const user = response;
                     if (user) {
                       localStorage.setItem('token', user.token);

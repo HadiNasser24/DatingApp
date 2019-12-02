@@ -37,7 +37,7 @@ namespace Datinapp.API.Controllers
             userForRegisterDto.username = userForRegisterDto.username.ToLower();
             if (await _repo.UserExists(userForRegisterDto.username))
             {
-                return BadRequest("usrname already exists");
+                return BadRequest("username already exists");
             }
             var userToCreate = new User
             {
@@ -51,6 +51,8 @@ namespace Datinapp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+            throw new Exception("Computer says no");
+            
             var userFormRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFormRepo == null)
