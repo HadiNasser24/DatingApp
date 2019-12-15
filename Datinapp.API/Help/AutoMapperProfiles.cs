@@ -23,6 +23,8 @@ namespace Datinapp.API.Help
                     opt.MapFrom(src => src.DateOfBirth.CalculateAge()) );
             
             CreateMap<Photo,PhotosForDetailedDto>();
+
+            CreateMap<UserForUpdateDto,User>();
         }
     }
 }

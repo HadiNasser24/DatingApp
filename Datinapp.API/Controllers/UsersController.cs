@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Datinapp.API.Data;
@@ -40,6 +42,21 @@ namespace Datinapp.API.Controllers
              _repo.Delete(user);
             return Ok("User Deleted");
 
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id,UserForUpdateDto userForUpdateDto){
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)){ //check if the id is the same as in the token
+                return Unauthorized();
+            }
+
+            var userFromRepo= await _repo.GetUser(id);
+
+            _mapper.Map(userForUpdateDto,userFromRepo); //map the values updated into the user
+
+            if(await _repo.SaveAll()){
+                return NoContent();
+            }
+            throw new Exception($"updating user {id} failed on save");
         }
     }
 }
