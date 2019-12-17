@@ -13,6 +13,7 @@ namespace Datinapp.API.Models
         public DateTime DateAdded { get; set; }
 
         public bool IsMain { get; set; }
+        public string PublicId { get; set; }
 
         public User User { get; set; } // this how to tell about the relationship btween photos and users
                                         // and when we delete a user all his photos are deleted
